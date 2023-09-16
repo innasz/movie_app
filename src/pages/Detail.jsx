@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 const Detail = () => {
   const params = useParams();
+  console.log(params.tvId);
 
   const [item, setItem] = useState({});
 
