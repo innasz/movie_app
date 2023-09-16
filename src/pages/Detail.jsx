@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 const Detail = () => {
-  const params = useParams();
-  console.log(params.tvId);
+  const { movieId, tvId } = useParams();
+  const { pathname } = useLocation();
+  const id = pathname.includes('movie') ? movieId : tvId;
+  const provider = pathname.includes('movie') ? 'movie' : 'tv';
 
   const [item, setItem] = useState({});
 
@@ -17,7 +19,7 @@ const Detail = () => {
         },
       };
       const result = await axios.get(
-        `https://api.themoviedb.org/3/movie/${params.movieId}`,
+        `https://api.themoviedb.org/3/${provider}/${id}`,
         options
       );
       console.log('+++++++', result.data);
@@ -33,7 +35,9 @@ const Detail = () => {
 
   return (
     <div>
-      <h1>{item.title}</h1>
+      <h1>{item.title ? item.title : item.name}</h1>
+      <h3>{item.overview}</h3>
+      <p>{item.last_air_date ? item.last_air_date : item.release_date}</p>
     </div>
   );
 };
