@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import MovieList from './pages/MovieList';
 
 import TVList from './pages/TVList';
-import Detail from './pages/MovieDetail';
+import Detail from './pages/Detail';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     element: <MovieList />,
   },
   {
-    path: '/movie/:id',
+    path: '/movie/:movieId',
     element: <Detail />,
   },
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <TVList />,
   },
   {
-    path: '/tv/:id',
+    path: '/tv/:tvId',
     element: <Detail />,
   },
 ]);
